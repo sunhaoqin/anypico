@@ -240,14 +240,14 @@ namespace picosystem {
 
   // input pins
   enum button {
-    UP    = 23,
-    DOWN  = 20,
-    LEFT  = 22,
-    RIGHT = 21,
-    A     = 18,
-    B     = 19,
-    X     = 17,
-    Y     = 16
+    UP    = 2,
+    DOWN  = 9,
+    LEFT  = 0,
+    RIGHT = 3,
+    A     = 15,
+    B     = 17,
+    X     = 13,
+    Y     = 14
   };
 
   // assets

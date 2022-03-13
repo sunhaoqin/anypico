@@ -33,11 +33,11 @@ namespace picosystem {
   struct repeating_timer _audio_update_timer;
 
   enum pin {
-    RED = 14, GREEN = 13, BLUE = 15,                  // user rgb led
-    CS = 5, SCK = 6, MOSI  = 7,                       // spi
-    VSYNC = 8, DC = 9, LCD_RESET = 4, BACKLIGHT = 12, // screen
-    AUDIO = 11,                                       // audio
-    CHARGE_LED = 2, CHARGING = 24, BATTERY_LEVEL = 26 // battery / charging
+    RED = 18, GREEN = 19, BLUE = 28,                  // user rgb led
+    CS = 11, SCK = 6, MOSI  = 7,                       // spi
+    VSYNC = 16, DC = 8, LCD_RESET = 10, BACKLIGHT = 20, // screen
+    AUDIO = 21,                                       // audio
+    CHARGE_LED = 12, CHARGING = 24, BATTERY_LEVEL = 26 // battery / charging
   };
 
   void init_inputs(uint32_t pin_mask) {
@@ -102,8 +102,8 @@ namespace picosystem {
   }
 
   void _wait_vsync() {
-    while(gpio_get(VSYNC))  {}  // if in vsync already wait for it to end
-    while(!gpio_get(VSYNC)) {}  // now wait for vsync to occur
+    // while(gpio_get(VSYNC))  {}  // if in vsync already wait for it to end
+    // while(!gpio_get(VSYNC)) {}  // now wait for vsync to occur
   }
 
   bool _in_flip = false;
@@ -373,8 +373,8 @@ namespace picosystem {
     sleep_ms(115);
     _screen_command(SLPOUT);
     _screen_command(DISPON);
-    _screen_command(CASET,     4, "\x00\x00\x00\xef");
-    _screen_command(RASET,     4, "\x00\x00\x00\xef");
+    _screen_command(CASET,     4, "\x00\x00\x00\xef"); //52+134  34 ba
+    _screen_command(RASET,     4, "\x00\x28\x01\x17"); //40+239 28 117
     _screen_command(RAMWR);
 
     // switch st7789 into data mode so that we can start transmitting frame
